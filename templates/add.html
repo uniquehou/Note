@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>添加备注</title>
+    <style>
+        body {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">添加便签</h3>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">标题</label>
+                    <div class="col-sm-10">
+                        <input type="text" id="title" class="form-control"  placeholder="便签标题">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">内容</label>
+                    <div class="col-sm-10">
+                        <textarea id="content" class="form-control" rows="3" placeholder="便签内容"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="button" class="btn btn-primary btn-lg btn-block" id="add">添加</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script>
+    $("#add").click(function () {
+        $.ajax("http://127.0.0.1:8888/add/", {
+            type: "post",
+            dataType: "json",
+            // headers:{'Content-Type':'application/json;charset=utf8'},
+            data: {
+                "title": $("#title").val(),
+                "content": $("#content").val(),
+            },
+            success: function (res) {
+                console.log(res.status)
+            }
+        })
+    })
+
+</script>
+
+</body>
+</html>
